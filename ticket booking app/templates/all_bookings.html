@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>All Bookings</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #74ebd5, #9face6);
+            margin: 0;
+            padding: 30px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .booking-card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 350px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .booking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.25);
+        }
+
+        .booking-card p {
+            margin: 8px 0;
+            color: #444;
+            font-size: 15px;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #2c7a7b;
+        }
+
+        .status {
+            font-style: italic;
+            font-weight: bold;
+        }
+
+        /* Color-coded statuses */
+        .status.confirmed {
+            color: #2e8b57;
+        }
+        .status.cancelled {
+            color: #d62828;
+        }
+        .status.pending {
+            color: #ff8c00;
+        }
+    </style>
+</head>
+<body>
+    <h2>All Bookings</h2>
+
+    
+    <div class="booking-card">
+        <p><b>User:</b> {{ b.user }}</p>
+        <p><b>Event:</b> {{ b.event_id }}</p>
+        <p class="price"><b>Price:</b> ₹{{ b.price }}</p>
+        <p class="status {{ b.status|lower }}"><b>Status:</b> {{ b.status }}</p>
+    </div>
+    
+</body>
+</html>

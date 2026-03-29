@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Events</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #fdfbfb, #ebedee);
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        .navbar a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #ffd700;
+        }
+
+        h2 {
+            text-align: center;
+            margin: 30px 0;
+            color: #333;
+        }
+
+        /* Event Cards */
+        .card {
+            background: linear-gradient(135deg, #ffffff, #f9f9f9);
+            padding: 20px;
+            margin: 20px auto;
+            width: 320px;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: #444;
+        }
+
+        .card p {
+            margin: 8px 0;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .card a {
+            display: inline-block;
+            padding: 10px 14px;
+            margin-top: 12px;
+            text-decoration: none;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: white;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: bold;
+            transition: background 0.3s ease, transform 0.2s ease;
+        }
+
+        .card a:hover {
+            background: linear-gradient(135deg, #2c7a7b, #0f3460);
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ✅ NAVBAR -->
+<div class="navbar">
+    <a href="/dashboard">Dashboard</a>
+    {% if role == "admin" %}
+        <a href="/create_event">Create Event</a>
+        <a href="/events">Events</a>
+        <a href="/all_bookings">All Bookings</a>
+    {% else %}
+        <a href="/events">Events</a>
+        <a href="/my_bookings">My Bookings</a>
+    {% endif %}
+    <a href="/logout">Logout</a>
+</div>
+
+<h2>Events</h2>
+
+{% for e in events %}
+<div class="card">
+    <h3>{{ e.title }}</h3>
+    <p><b>Date:</b> {{ e.date }}</p>
+    <p><b>Location:</b> {{ e.location }}</p>
+    <p><b>Price:</b> ₹{{ "%.2f"|format(e.price) }}</p>
+
+    {% if role != "admin" %}
+        <a href="/book/{{ e._id }}">Book Now</a>
+    {% endif %}
+</div>
+{% endfor %}
+
+</body>
+</html>

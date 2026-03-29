@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fad0c4, #fbc2eb, #a6c1ee);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            margin: 0;
+            padding: 40px;
+            text-align: center;
+        }
+
+        @keyframes gradientBG {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+
+        h2 {
+            color: #fff;
+            font-size: 28px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.3);
+        }
+
+        .dashboard-links {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px 50px;
+            border-radius: 15px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+        }
+
+        .dashboard-links a {
+            display: block;
+            margin: 15px 0;
+            padding: 14px;
+            text-decoration: none;
+            background: linear-gradient(135deg, #43cea2, #185a9d);
+            color: #fff;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s ease, box-shadow 0.3s ease;
+        }
+
+        .dashboard-links a:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+        }
+
+        .logout {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ff416c, #ff4b2b) !important;
+        }
+
+        .logout:hover {
+            background: linear-gradient(135deg, #e63946, #d62828) !important;
+        }
+    </style>
+</head>
+<body>
+    <h2>Welcome {{ user }}</h2>
+
+    <div class="dashboard-links">
+        <a href="/create_event">Create Event</a>
+        <a href="/events">View Events</a>
+        <a href="/all_bookings">All Bookings</a>
+        <a href="/my_bookings">My Bookings</a>
+        <a href="/logout" class="logout">Logout</a>
+    </div>
+</body>
+</html>
